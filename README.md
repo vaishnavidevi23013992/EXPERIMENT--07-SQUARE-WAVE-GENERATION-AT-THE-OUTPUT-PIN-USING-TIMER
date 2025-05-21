@@ -1,4 +1,4 @@
-# EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER
+# EXPERIMENT  07 : SQUARE WAVE GENERATION AT THE OUTPUT PIN USING TIMER
 
 ### Aim:
 To generate a PWM wave at the timer pin output and  simuate it on  proteus using an virtual oscilloscope  
@@ -97,38 +97,86 @@ Step14. click on debug and simulate using simulation as shown below
 
 ## STM 32 CUBE PROGRAM :
 
+```
 
+#include "main.h"
+
+TIM_HandleTypeDef htim2;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_TIM2_Init(void);
+
+int main(void)
+{
+
+  HAL_Init();
+
+  SystemClock_Config();
+
+
+  MX_GPIO_Init();
+  MX_TIM2_Init();
+
+  HAL_TIM_Base_Start(&htim2);
+  HAL_TIM_PWM_Init(&htim2);
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+
+  while (1)
+  {
+    
+  }
+  
+}
+```
 
 
 
 ## Output screen shots of proteus  :
- 
+ ### FOR PULSE AT 500:
+ ![image](https://github.com/user-attachments/assets/73b38aa1-a0e0-493b-8fb3-4c2f34ee1b4d)
+### FOR PULSE AT 700
+![image](https://github.com/user-attachments/assets/6f323ec7-b8dd-4f73-b8ae-a50002f9aa74)
+### FOR PULSE AT 900:
+![Screenshot 2025-05-06 155746](https://github.com/user-attachments/assets/6d307840-d060-4016-9a17-5066086836c1)
+
+
  
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
- 
+ ![Ex-07_page-0001](https://github.com/user-attachments/assets/8c5179e4-5f5d-4973-891f-b40f88283dfb)
+
 
 ## DUTY CYCLE AND FREQUENCY CALCULATION 
-FOR PULSE AT 500
+#### FOR PULSE AT 500
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+TON = 0.34 ms
 
-FOR PULSE AT 700
+TOFF= 0.34 ms
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+TOTAL TIME = TON +TOFF = 0.64 ms
+
+FREQUENCY = 1/(TOTAL TIME) = 1/0.64 = 1562.5 Hertz.
+
+#### FOR PULSE AT 700
+
+TON = 0.85 ms
+
+TOFF= 0.34 ms
+
+TOTAL TIME =  TON +TOFF = 0.85+0.34 = 1.18 ms
+
+FREQUENCY = 1/(TOTAL TIME) =  1/1.18 = 847.45 Hertz
 
 
-FOR PULSE AT 900
+#### FOR PULSE AT 900
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+TON = 1.08 ms
+
+TOFF= 0.12 ms
+
+TOTAL TIME = TON + TOFF = 1.08+0.12 = 1.2 ms
+
+FREQUENCY = 1/(TOTAL TIME) =  1/1.2 = 833.33 Hertz
 
 
 ## Result :
